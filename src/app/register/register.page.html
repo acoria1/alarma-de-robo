@@ -1,0 +1,126 @@
+<ion-content [fullscreen]="true">
+  <div *ngIf="!attemptingSingUp;else spinner" class="container p-4" style="min-height: 100%">
+    <div class="row">
+      <div class="col-12 h1 heading mt-4 ion-text-center">Creción de Cuenta</div>
+      <div class="col-12 para ml-5 ion-text-center">Completá tus datos:</div>
+    </div>
+    <div class="row mt-5">
+      <form [formGroup]="signUpForm">
+        <ion-item class="mb-3" lines="full">
+          <ion-label position="floating" color="warning">Nombre</ion-label>
+          <ion-input
+            type="text"
+            placeholder="Juan Gonzalez"
+            formControlName="nombre"
+          ></ion-input>
+          <ion-note *ngIf="signUpForm.get('nombre')!.touched" slot="error"
+            >Obligatorio</ion-note
+          >
+        </ion-item>
+        <ion-item class="mb-3" lines="full">
+          <ion-label position="floating" color="warning">Correo Electrónico</ion-label>
+          <ion-input
+            type="email"
+            placeholder="nombre@dominio.com"
+            formControlName="email"
+            errorText="Email Invalido"
+          ></ion-input>
+          <ion-note *ngIf="signUpForm.get('email')!.touched" slot="error"
+            >Email inválido</ion-note
+          >
+        </ion-item>
+        <ion-item lines="full" errorText="Contraseña incorrecta" class="mb-3">
+          <ion-label position="floating" color="warning">Contraseña</ion-label>
+          <ion-input
+            [type]="hidePassword[0]? 'password':'text'"
+            placeholder="**********"
+            formControlName="password"
+          ></ion-input>
+          <ion-button
+            size="default"
+            slot="end"
+            fill="clear"
+            (click)="togglePasswordVisibility(0)"
+            class="pt-3 icon-button"
+          >
+            <ion-icon
+              [name]="hidePassword[0] ? 'eye-off-outline' : 'eye-outline' "
+              color="warning"
+              class="iconEye"
+            ></ion-icon>
+          </ion-button>
+        </ion-item>
+        <ion-item lines="full" errorText="Contraseña incorrecta">
+          <ion-label position="floating" color="warning">Re-ingresar contraseña</ion-label>
+          <ion-input
+            [type]="hidePassword[1]? 'password':'text'"
+            placeholder="**********"
+            formControlName="confirmPassword"
+          ></ion-input>
+          <ion-button
+            size="default"
+            slot="end"
+            fill="clear"
+            (click)="togglePasswordVisibility(1)"
+            class="pt-3 icon-button"
+          >
+            <ion-icon
+              [name]="hidePassword[1] ? 'eye-off-outline' : 'eye-outline' "
+              color="warning"
+              class="iconEye"
+            ></ion-icon>
+          </ion-button>
+        </ion-item>
+        <ion-button class="mb-3" id="pswd-hint" shape="round" fill="clear">
+          <ion-icon
+              [name]="'information-circle-outline'"
+              color="warning"
+              class="iconEye"
+            ></ion-icon>
+        </ion-button>
+        <ion-popover trigger="pswd-hint" triggerAction="click">
+          <ng-template>
+            <ion-content class="ion-padding">
+              La contraseña debe tener una longitud mínima de 8 caracteres, contar con una letra mayúscula, una letra minúscula y un número
+            </ion-content>
+          </ng-template>
+        </ion-popover>
+
+        <p class="signup-text">
+          ¿Ya tenés una cuenta?&nbsp;<a
+            routerLink="/login"
+            routerLinkActive="active"
+            >
+            <u class="font-weight-bold">Ingresar</u>
+            </a
+          >
+        </p>
+
+        <ion-button
+          class="login-button mt-4 mb-3 text-dark"
+          (click)="handleRegister()"
+          expand="block"
+          [disabled]="!signUpForm.valid"
+          strong="true"
+          color="warning"
+          >
+          Registrarme
+        </ion-button>
+
+        <div class="separator mb-3 col-10 offset-1">O</div>
+
+        <ion-button class="google-button" expand="block" color="tertiary"
+        (click)="handleGoogleAuth()" strong="true"><ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;Ingresar con Google</ion-button
+        >
+      </form>
+    </div>
+  </div>
+  <ng-template #spinner>
+    <app-spinner [optionalMessage]="'Ingresando'"></app-spinner>
+  </ng-template>
+</ion-content>
+<!-- <ion-footer color="white">
+  <ion-toolbar>
+    <p class="copyright">Derechos reservados ⒸACoria 2023</p>
+  </ion-toolbar>
+</ion-footer> -->

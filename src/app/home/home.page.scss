@@ -1,0 +1,37 @@
+
+ion-img {
+  object-fit:cover;
+  max-height: 100%;
+}
+
+ion-img.alarma-apagada-img {
+  padding: 7vw;
+  opacity: 90%;
+}
+
+.content-with-full-height{
+  height: 100%;
+}
+
+.divisor{
+  background-color: rgb(255, 221, 134);
+}
+
+ion-fab-button.header {
+  width: 20vw !important;
+  height: 10vh !important;
+  --border-radius: 10px !important;
+  --border-color: black;
+  --border-style: solid;
+  --border-width: 2px;
+}
+
+ion-button.btn-alarma{
+  height: -webkit-fill-available;
+  width: -webkit-fill-available;
+  margin: 0;
+}
+
+div.text-container{
+  display: block;
+}

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "ionic-login-a9669"
+  },
+  "targets": {
+    "ionic-login-a9669": {
+      "hosting": {
+        "app": [
+          "ionic-login-a9669"
+        ]
+      }
+    }
+  }
+}

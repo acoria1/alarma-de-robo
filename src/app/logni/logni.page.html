@@ -1,0 +1,70 @@
+<ion-content [fullscreen]="true">
+  <div *ngIf="!attemptingSingIn;else spinner" class="d-flex flex-column p-4 justify-content-start mt-5" style="max-height: 90vh;">
+    <ion-fab #fab1 slot="fixed" vertical="top" horizontal="start" (click)="fabClicked()">
+      <ion-fab-button [class]="fabIsOpen ? '' : 'custom-opacity'" class="header" color="warning">
+        <div>
+          <ion-icon name="people-outline" size="large"></ion-icon>
+        </div>
+      </ion-fab-button>
+      <ion-fab-list side="bottom">
+        <ion-fab-button *ngFor="let mockUser of mockUsersButtons;let i = index" 
+          (click)="loadLoginForm(mockUser)" 
+          [class]="i === 0 ? 'mt-2 detail' : 'detail'">
+          <div>
+            <ion-img [src]="mockUser.backgroundImg"></ion-img>
+          </div>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+    <div [class]="fabIsOpen ? 'low-opacity' : ''">
+      <div class="row mb-5">
+        <ion-img src=".\assets\icon\alarma_robo_icon.png" style="height: 30vh;"></ion-img>
+      </div>
+      <div class="row align-self-center">
+        <!-- <div class="p-4 mb-4">
+          <app-custom-buttons *ngIf="mockUsersButtons.length > 0"  [buttons]="mockUsersButtons" (buttonClicked)="loadLoginForm($event)" [classWrapper]="'feature-container-login'" [columns]="3"></app-custom-buttons>
+        </div> -->
+        <form [formGroup]="loginForm" (ngSubmit)="handleLogIn()">
+          <ion-item class="mb-4" lines="full" >
+            <ion-label position="floating" color="warning">Correo electrónico</ion-label>
+            <ion-input  type="email" placeholder="nombre.apellido@dominio.com" formControlName="email" legacy="true"></ion-input>
+            <ion-note *ngIf="loginForm.get('email')!.touched" slot="error">formato inválido de email</ion-note>
+          </ion-item>
+          <ion-item class="mb-5" lines="full">
+            <ion-label position="floating" color="warning">Contraseña</ion-label>
+            <ion-input [type]="hidePassword? 'password':'text'" placeholder="**********" formControlName="password" legacy="true"></ion-input>
+            <ion-button size="default" slot="end" fill="clear" (click)="togglePasswordVisibility()" class="pt-3 icon-button">
+              <ion-icon [name]="hidePassword ? 'eye-off-outline' : 'eye-outline' " color="warning" class="iconEye"></ion-icon>
+            </ion-button>
+          </ion-item>
+          <div class="signup-text mb-3">
+            ¿No tenés una cuenta? &nbsp; 
+            <a class="mat-subheading-2" routerLink="/register" routerLinkActive="active">
+              <u class="font-weight-bold">Registrate</u>
+            </a>
+          </div>
+          <div class="mt-4">
+            <ion-button class="login-button mt-4 mb-3" strong="true" type="submit" expand="block" [disabled]="!loginForm.valid || invalidCredentials" color="warning">
+              Ingresar
+            </ion-button>
+            <div class="separator mb-3 col-10 offset-1">O</div>
+            <ion-button (click)="handleGoogleAuth()" class="google-button" expand="block" color="tertiary" strong="true">
+              <ion-icon name="logo-google"></ion-icon>
+              &nbsp;&nbsp;Ingresar con Google
+            </ion-button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <ng-template #spinner>
+    <app-spinner [optionalMessage]="'Ingresando'"></app-spinner>
+  </ng-template>
+</ion-content>
+<!-- <ion-footer color="white">
+  <ion-toolbar>
+    <p class="copyright">Derechos reservados ⒸACoria 2023</p>
+  </ion-toolbar>
+</ion-footer> -->
+  
+  

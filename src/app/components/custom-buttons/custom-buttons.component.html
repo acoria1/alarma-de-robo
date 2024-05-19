@@ -1,0 +1,9 @@
+<div [class]="classWrapper">
+  <mat-grid-list class="grid-layout-custom" [cols]="columns" [rowHeight]="rowHeight" [gutterSize]="gutterSize!">
+      <mat-grid-tile class="selectable mat-grid-tile-rounded" [style.background]="'url(' + button.backgroundImg + ') center'" [style.background-color]="button.backgroundColor !== '' ? button.backgroundColor : 'rgba(255,255,255,0.6)'"  [style.background-size]="'cover'" *ngFor="let button of buttons" (click)="buttonSelected(button)" style="background-blend-mode: lighten; border-radius: 10%;">
+          <div class="text-center" [class]="labelClass" [style.color]="button.color">
+              {{button.label}}
+          </div>            
+      </mat-grid-tile>
+  </mat-grid-list>    
+</div>

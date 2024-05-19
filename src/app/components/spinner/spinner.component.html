@@ -1,0 +1,7 @@
+<div class="container spinner">
+  <div>
+    <div *ngIf="optionalMessage != ''" class="row h1 mb-4">{{optionalMessage}}</div>
+    <ion-spinner [name]="spinnerType"></ion-spinner>
+    <div class="row"></div>
+  </div>
+</div>

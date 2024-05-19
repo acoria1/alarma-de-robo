@@ -1,0 +1,23 @@
+<ng-container *ngIf="!signingOut;else spinner">
+  <ion-content class="content-with-full-height" id="main-content">
+    <ion-button class="btn-alarma" [class]="" (click)="onAlarmaBtnClick()" [disabled]="specialAlertOngoing" [color]="alarmaActivada ? 'danger' : 'primary'">
+      <div class="text-container">
+        <h1 style="font-size: 50px;">{{alarmaActivada ? 'DESACTIVAR' : 'ACTIVAR'}}</h1>
+        <br>
+        <h1 style="font-size: 50px;">ALARMA</h1><br>
+        <ion-img [src]="alarmaActivada ? '../assets/images/alarma-encendida.gif' : '../assets/images/alarma-apagada.png'" [class]="alarmaActivada ? '' : 'alarma-apagada-img'"></ion-img>
+      </div>
+    </ion-button>
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button [disabled]="alarmaActivada" (click)="handleSignOut()" color="dark" class="header">
+        <ion-icon name="arrow-redo" size="large"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-content>
+</ng-container>
+
+<ng-template #spinner>
+  <ion-content>
+    <app-spinner [optionalMessage]="'Cerrando Sesión'"></app-spinner>
+  </ion-content>
+</ng-template>
