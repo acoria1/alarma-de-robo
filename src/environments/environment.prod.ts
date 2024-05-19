@@ -1,6 +1,6 @@
 export const environment = {
   firebase: {
-    apiKey: "AIzaSyCdRRnBbX8R0qg3xauDHItMVmvdDAdzlxk",
+    apiKey: "",
     authDomain: "ionic-login-a9669.firebaseapp.com",
     projectId: "ionic-login-a9669",
     storageBucket: "ionic-login-a9669.appspot.com",
